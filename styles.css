@@ -167,6 +167,23 @@ select {
   margin: 0;
 }
 
+.capability-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.capability-list span,
+.decision-tags span {
+  border: 1px solid #cfd9e6;
+  border-radius: 999px;
+  background: #f7fafc;
+  color: #314154;
+  padding: 7px 10px;
+  font-size: 12px;
+  font-weight: 750;
+}
+
 .data-source {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -288,6 +305,13 @@ select {
   line-height: 1.7;
 }
 
+.decision-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
 .score-pill {
   height: 126px;
   display: grid;
@@ -309,13 +333,62 @@ select {
   font-weight: 700;
 }
 
+.pipeline-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.pipeline-step {
+  min-height: 126px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.pipeline-step span {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 12px;
+  border-radius: 7px;
+  background: #edf4ff;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.pipeline-step strong {
+  display: block;
+  margin-bottom: 7px;
+}
+
+.pipeline-step p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
 .content-grid {
   display: grid;
-  grid-template-columns: 1.35fr 1fr;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 1fr);
   gap: 18px;
 }
 
+.evidence-grid {
+  grid-template-columns: 1fr;
+}
+
+.evidence-grid .card.wide {
+  grid-row: auto;
+}
+
 .card {
+  min-width: 0;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -329,6 +402,10 @@ select {
 
 .card.full {
   min-height: 520px;
+}
+
+.card.full-row {
+  grid-column: 1 / -1;
 }
 
 .card-head span {
@@ -346,6 +423,13 @@ select {
   grid-template-columns: 74px minmax(0, 1fr) 54px;
   gap: 12px;
   align-items: center;
+}
+
+.score-row small {
+  grid-column: 2 / 4;
+  margin-top: -6px;
+  color: var(--muted);
+  font-size: 12px;
 }
 
 .bar {
@@ -403,6 +487,121 @@ select {
   line-height: 1.7;
 }
 
+.gap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.gap-card,
+.action-card,
+.source-item,
+.timeline-item {
+  border: 1px solid #dce4ee;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.gap-card,
+.action-card {
+  padding: 14px;
+}
+
+.gap-card strong,
+.action-card strong,
+.timeline-item strong,
+.source-item strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.gap-card p,
+.action-card p,
+.timeline-item p,
+.source-item p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 680px;
+}
+
+th,
+td {
+  padding: 11px 12px;
+  border-bottom: 1px solid #e1e8f0;
+  text-align: left;
+  vertical-align: top;
+  font-size: 13px;
+}
+
+th {
+  background: #edf2f7;
+  color: #314154;
+  font-weight: 850;
+}
+
+td {
+  color: #263747;
+}
+
+.source-list,
+.action-list,
+.timeline,
+.risk-notes {
+  display: grid;
+  gap: 12px;
+}
+
+.source-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px;
+}
+
+.source-item span {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #e9eef5;
+  color: var(--muted);
+  padding: 5px 9px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.source-item.active span {
+  background: #e8f6f3;
+  color: var(--teal);
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 12px;
+  padding: 14px;
+}
+
+.timeline-item > span {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--ink);
+  color: #fff;
+  font-weight: 850;
+}
+
 .risk-grid {
   display: grid;
   grid-template-columns: 170px repeat(4, minmax(120px, 1fr));
@@ -439,6 +638,24 @@ select {
   background: #fff1f1;
 }
 
+.risk-notes {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 16px;
+}
+
+.risk-notes div {
+  border: 1px solid #dce4ee;
+  border-radius: 8px;
+  padding: 14px;
+  background: #f8fafc;
+}
+
+.risk-notes p {
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 13px;
+}
+
 .report-card pre {
   white-space: pre-wrap;
   line-height: 1.75;
@@ -462,7 +679,10 @@ select {
   }
 
   .content-grid,
-  .summary-band {
+  .summary-band,
+  .pipeline-strip,
+  .gap-grid,
+  .risk-notes {
     grid-template-columns: 1fr;
   }
 
