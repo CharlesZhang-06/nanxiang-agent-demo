@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>南向出海智能体 Demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">SEA</div>
+          <div>
+            <h1>南向出海智能体</h1>
+            <p>东南亚市场调研与进入策略 Demo</p>
+          </div>
+        </div>
+
+        <section class="panel">
+          <div class="panel-head">
+            <span class="icon">01</span>
+            <h2>企业画像</h2>
+          </div>
+
+          <label>
+            企业类型
+            <select id="companyType">
+              <option>品牌方</option>
+              <option>工厂</option>
+              <option>贸易商</option>
+              <option>跨境电商卖家</option>
+            </select>
+          </label>
+
+          <label>
+            产品品类
+            <select id="category">
+              <option value="小家电">小家电</option>
+              <option value="美妆">美妆</option>
+            </select>
+          </label>
+
+          <label>
+            具体产品
+            <input id="product" value="便携榨汁机" />
+          </label>
+
+          <label>
+            进入方式
+            <select id="entryMode">
+              <option>Shopee + TikTok Shop</option>
+              <option>Shopee</option>
+              <option>TikTok Shop</option>
+              <option>线下代理</option>
+            </select>
+          </label>
+
+          <div class="grid-2">
+            <label>
+              价格带
+              <select id="priceTier">
+                <option>中端</option>
+                <option>低价</option>
+                <option>高端</option>
+              </select>
+            </label>
+            <label>
+              预算
+              <select id="budget">
+                <option>中</option>
+                <option>低</option>
+                <option>高</option>
+              </select>
+            </label>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <span class="icon">02</span>
+            <h2>目标国家</h2>
+          </div>
+          <div class="checks" id="countryChecks">
+            <label><input type="checkbox" value="印尼" checked /> 印尼</label>
+            <label><input type="checkbox" value="越南" checked /> 越南</label>
+            <label><input type="checkbox" value="泰国" checked /> 泰国</label>
+            <label><input type="checkbox" value="马来西亚" /> 马来西亚</label>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <span class="icon">03</span>
+            <h2>数据源</h2>
+          </div>
+          <div class="data-source">
+            <button class="secondary active" id="useSample">使用内置样本</button>
+            <label class="upload">
+              上传 CSV
+              <input type="file" id="csvUpload" accept=".csv" />
+            </label>
+          </div>
+          <p class="hint" id="dataHint">当前使用内置样本数据：小家电与美妆平台样本。</p>
+        </section>
+
+        <button class="primary" id="generateBtn">生成调研结果</button>
+      </aside>
+
+      <section class="workspace">
+        <nav class="topbar">
+          <button class="tab active" data-tab="dashboard">Dashboard</button>
+          <button class="tab" data-tab="risks">风险矩阵</button>
+          <button class="tab" data-tab="report">报告预览</button>
+        </nav>
+
+        <section class="tab-panel active" id="dashboard">
+          <div class="summary-band">
+            <div>
+              <p class="eyebrow">综合判断</p>
+              <h2 id="summaryTitle">越南优先测试，泰国内容验证，印尼二阶段进入</h2>
+              <p id="summaryText">
+                基于当前样本，越南在平台成熟度、履约复杂度和企业资源匹配上更适合作为首轮测试市场。
+              </p>
+            </div>
+            <div class="score-pill">
+              <span id="topScore">82</span>
+              <small>最高适配分</small>
+            </div>
+          </div>
+
+          <div class="content-grid">
+            <section class="card wide">
+              <div class="card-head">
+                <h3>国别适配度</h3>
+                <span>按市场机会、竞争、文化、合规和资源匹配综合评分</span>
+              </div>
+              <div id="countryScores" class="score-list"></div>
+            </section>
+
+            <section class="card">
+              <div class="card-head">
+                <h3>样本数据概览</h3>
+                <span id="sampleMeta">12 条商品样本</span>
+              </div>
+              <div class="metric-grid">
+                <div>
+                  <strong id="avgPrice">-</strong>
+                  <span>平均价格</span>
+                </div>
+                <div>
+                  <strong id="avgReviews">-</strong>
+                  <span>平均评论</span>
+                </div>
+                <div>
+                  <strong id="competitorCount">-</strong>
+                  <span>竞品样本</span>
+                </div>
+                <div>
+                  <strong id="topKeyword">-</strong>
+                  <span>高频卖点</span>
+                </div>
+              </div>
+            </section>
+
+            <section class="card">
+              <div class="card-head">
+                <h3>本地化提示</h3>
+                <span>从国别知识卡与品类规则生成</span>
+              </div>
+              <ul id="localizationList" class="insight-list"></ul>
+            </section>
+          </div>
+        </section>
+
+        <section class="tab-panel" id="risks">
+          <section class="card full">
+            <div class="card-head">
+              <h3>风险矩阵</h3>
+              <span>高风险不代表不能进入，而是需要优先验证</span>
+            </div>
+            <div id="riskMatrix" class="risk-grid"></div>
+          </section>
+        </section>
+
+        <section class="tab-panel" id="report">
+          <section class="card full report-card">
+            <div class="card-head">
+              <h3>调研报告预览</h3>
+              <button class="secondary" id="copyReport">复制报告</button>
+            </div>
+            <pre id="reportText"></pre>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
