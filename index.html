@@ -56,6 +56,16 @@
             </select>
           </label>
 
+          <label>
+            本次任务目标
+            <select id="taskGoal">
+              <option>选择首轮测试国家</option>
+              <option>生成品类调研简报</option>
+              <option>识别本地化改造方向</option>
+              <option>准备企业汇报材料</option>
+            </select>
+          </label>
+
           <div class="grid-2">
             <label>
               价格带
@@ -66,19 +76,42 @@
               </select>
             </label>
             <label>
-              预算
-              <select id="budget">
-                <option>中</option>
-                <option>低</option>
-                <option>高</option>
+              数据成熟度
+              <select id="dataMaturity">
+                <option>样本数据</option>
+                <option>平台 API</option>
+                <option>平台 API + 企业销售数据</option>
               </select>
             </label>
           </div>
+
+          <label>
+            预算
+            <select id="budget">
+              <option>中</option>
+              <option>低</option>
+              <option>高</option>
+            </select>
+          </label>
         </section>
 
         <section class="panel">
           <div class="panel-head">
             <span class="icon">02</span>
+            <h2>智能体能力</h2>
+          </div>
+          <div class="capability-list">
+            <span>任务拆解</span>
+            <span>多国比较</span>
+            <span>数据缺口提示</span>
+            <span>风险矩阵</span>
+            <span>策略报告</span>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <span class="icon">03</span>
             <h2>目标国家</h2>
           </div>
           <div class="checks" id="countryChecks">
@@ -91,7 +124,7 @@
 
         <section class="panel">
           <div class="panel-head">
-            <span class="icon">03</span>
+            <span class="icon">04</span>
             <h2>数据源</h2>
           </div>
           <div class="data-source">
@@ -110,6 +143,8 @@
       <section class="workspace">
         <nav class="topbar">
           <button class="tab active" data-tab="dashboard">Dashboard</button>
+          <button class="tab" data-tab="evidence">数据证据</button>
+          <button class="tab" data-tab="strategy">策略路径</button>
           <button class="tab" data-tab="risks">风险矩阵</button>
           <button class="tab" data-tab="report">报告预览</button>
         </nav>
@@ -122,12 +157,15 @@
               <p id="summaryText">
                 基于当前样本，越南在平台成熟度、履约复杂度和企业资源匹配上更适合作为首轮测试市场。
               </p>
+              <div class="decision-tags" id="decisionTags"></div>
             </div>
             <div class="score-pill">
               <span id="topScore">82</span>
               <small>最高适配分</small>
             </div>
           </div>
+
+          <div class="pipeline-strip" id="pipelineStrip"></div>
 
           <div class="content-grid">
             <section class="card wide">
@@ -170,6 +208,69 @@
               </div>
               <ul id="localizationList" class="insight-list"></ul>
             </section>
+
+            <section class="card full-row">
+              <div class="card-head">
+                <h3>数据缺口与下一步采集</h3>
+                <span>让报告从“推断”走向“可验证”</span>
+              </div>
+              <div id="dataGaps" class="gap-grid"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="tab-panel" id="evidence">
+          <div class="content-grid evidence-grid">
+            <section class="card wide">
+              <div class="card-head">
+                <h3>平台样本表</h3>
+                <span>展示智能体如何把原始数据转成判断依据</span>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>国家</th>
+                      <th>平台</th>
+                      <th>价格</th>
+                      <th>评分</th>
+                      <th>评论</th>
+                      <th>卖点</th>
+                      <th>差评</th>
+                    </tr>
+                  </thead>
+                  <tbody id="sampleRows"></tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="card">
+              <div class="card-head">
+                <h3>数据源状态</h3>
+                <span>未来可逐步接入真实接口</span>
+              </div>
+              <div id="sourceStatus" class="source-list"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="tab-panel" id="strategy">
+          <div class="content-grid">
+            <section class="card wide">
+              <div class="card-head">
+                <h3>进入策略路径</h3>
+                <span>从市场初筛到首轮验证</span>
+              </div>
+              <div id="strategySteps" class="timeline"></div>
+            </section>
+
+            <section class="card">
+              <div class="card-head">
+                <h3>推荐动作</h3>
+                <span>适合课堂演示的落地清单</span>
+              </div>
+              <div id="actionCards" class="action-list"></div>
+            </section>
           </div>
         </section>
 
@@ -180,6 +281,7 @@
               <span>高风险不代表不能进入，而是需要优先验证</span>
             </div>
             <div id="riskMatrix" class="risk-grid"></div>
+            <div id="riskNotes" class="risk-notes"></div>
           </section>
         </section>
 
